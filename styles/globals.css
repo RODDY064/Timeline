@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 0, 0, 0;
+  --background: #EFF0F2;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--background);
+  overflow: hidden;
+}
+
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
