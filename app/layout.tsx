@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@styles/globals.css";
 import { poppins } from "./libs/font";
+import CreateContextProvider from "./utils/context/createContextProvider";
 
 
 
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {children}
+        <CreateContextProvider>
+          {children}
+        </CreateContextProvider>
       </body>
     </html>
   );

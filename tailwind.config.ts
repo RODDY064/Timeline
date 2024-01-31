@@ -12,6 +12,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "main":"url('/images/grid.svg')",
       },
       colors:{
         "cream": "#EFF0F2",
@@ -29,6 +30,9 @@ const config: Config = {
         "dark_black":"#111315",
 
 
+      },
+      boxShadow:{
+        "dark":"-1px 1px 56px 0px rgba(0,0,0,0.1)"
       }
     },
   },

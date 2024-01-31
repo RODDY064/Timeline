@@ -1,7 +1,10 @@
 import Button from "@app/ui/buttons/button";
+import Render from "@app/ui/dashboard/render";
 import Image from "next/image";
 
 export default function dashboard() {
+
+   
   return (
     <main className="md:pl-[8rem] px-2 pt-4 md:pt-[5.7rem] md:pr-[18rem] ">
       <div className="w-full flex ">
@@ -27,10 +30,11 @@ export default function dashboard() {
           />
         </div>
         <div className="flex gap-1">
-          <Button word="Add Team" border="border-light_green" bg_color="bg-cream_green/50" color="text-light_green"/>
-          <Button word="Create"/>
+          <Button word="Add Team" trigger="event" border="border-light_green" bg_color="bg-cream_green/50" color="text-light_green"/>
+          <Button word="Create" trigger="project"/>
         </div>
       </div>
+       <Render/>
     </main>
   );
 }

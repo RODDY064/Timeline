@@ -13,10 +13,42 @@ body {
   overflow: hidden;
 }
 
+.label{
+ @apply text-sm font-[600] ml-1
+}
 
+.input {
+  @apply p-2 focus:outline-none focus-within:border border-dark_blue/30
+  bg-dark_cream rounded-[10px] placeholder:text-xs
+}
+
+#render::-webkit-scrollbar{
+ display: none;
+}
+#Dropdown::-webkit-scrollbar {
+  background: transparent;
+
+}
+
+#Dropdown::-webkit-scrollbar-thumb {
+  appearance: none;
+  width: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  background:rgb(4, 88, 253,0.4) ;
+}
+
+
+@media screen and (max-height: 750px) {
+ #create{
+  height: 98%;
+ }
+  
+}
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
