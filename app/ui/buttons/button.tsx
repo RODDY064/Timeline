@@ -31,8 +31,9 @@ export default function Button({
 
   return (
     <div
+       id="button"
       onClick={()=>handleTrigger(trigger)}
-      className={`px-3 h-[40px] py-2 rounded-[9px] text-sm  cursor-pointer font-[500] flex items-center justify-center ${
+      className={`px-3 h-[40px] py-2 rounded-[9px] text-sm   cursor-pointer font-[500] flex items-center justify-center ${
         bg_color ? bg_color : "bg-dark_blue"
       }  ${color ? color : "text-white"}  ${border ? `border ${border}` : ""}`}>
       {word}

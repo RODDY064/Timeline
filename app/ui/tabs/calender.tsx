@@ -109,7 +109,7 @@ export default function Calender() {
           />
         </div>
       </div>
-      <div className="w-full flex p-[1.4rem] gap-[1.35rem] items-center justify-center h-10">
+      <div className="w-full flex p-[1.4rem] gap-[1.38rem] items-center justify-center h-10 ml-[-5px]">
         {["M", "T", "W", "T", "F", "S", "S"].map((day,index) => (
           <div key={index} className="font-[500] text-sm text-black/40">{day}</div>
         ))}

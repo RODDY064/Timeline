@@ -34,6 +34,7 @@ export default function ChangePage({
 
   return (
     <div
+       id="action"
       onClick={() => (page ? handleActions(page) : handleActions(open))}
       className={`px-3 h-[40px] py-2 rounded-[9px] text-sm  cursor-pointer 
     font-[500] flex items-center justify-center 

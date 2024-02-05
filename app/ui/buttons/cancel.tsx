@@ -2,9 +2,13 @@
 
 import { useCreateContext } from "@app/utils/context/createContextProvider";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Cancel({ setOpen}:{setOpen?:any}) {
   const { setCreate } = useCreateContext();
+  const searchParams = useSearchParams();
+  const param = new   URLSearchParams(searchParams);
+  const { replace } = useRouter();
 
   const handleAction = ()=>{
     setCreate(() => ({
@@ -14,7 +18,14 @@ export default function Cancel({ setOpen}:{setOpen?:any}) {
     })),
 
     setOpen && setOpen(false)
+
+    if (param.has('id')) {
+      // Delete the 'id' query parameter
+      param.delete('id');
+      replace(`?${param.toString()}`);
   }
+  }
+  
   return (
     <div>
       <Image

@@ -12,10 +12,9 @@ export interface formInput {
 
 export interface TaskInput {
   topic:string,
-  item:string[],
-  startDate: string;
-  endDate: string;
-
+  content:string,
+  dueDate: string;
+  priority: string;
 }
 // create form context
 
@@ -58,9 +57,9 @@ export default function FormContextProvider({
   });
   const [taskData, setTaskData] = useState<TaskInput>({
     topic: "",
-    item: [],
-    startDate: "",
-    endDate: "",
+    content: "",
+    dueDate: "",
+    priority: "low",
   });
 
   return (

@@ -8,11 +8,13 @@ const createContextTheme = createContext<{
     project?: boolean;
     event?: boolean;
     task?: boolean;
+    key?:number
   };
   setCreate: React.Dispatch<React.SetStateAction<{
     project?: boolean;
     event?: boolean;
     task?: boolean;
+    key?:number
   }>>;
 } | null>(null);
 
@@ -31,10 +33,12 @@ export default function CreateContextProvider({ children }: { children: React.Re
     project?: boolean;
     event?: boolean;
     task?: boolean;
+    key?:number
   }>({
     project: false,
     event: false,
     task: false,
+    key: 0,
   });
 
   return (

@@ -1,11 +1,28 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@app/utils/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const {topic, item, startDate, endDate } = await request.json();
-
-    console.log( topic, item, startDate, endDate,);
+    const eventId = "65bd2efa99462dc5077fc66c";
+    const { topic, content , dueDate , priority } = await request.json();
+    
+    const dueDateISO = new Date(dueDate).toISOString();
+    
+    const task = await prisma.task.create({
+      data: {
+        topic: topic,
+        content: content,
+        dueDate: dueDateISO,
+        priority: priority,
+        event: {
+          connect:{
+            id: eventId
+          }
+        }
+        
+      },
+    });
+  
     return NextResponse.json({ status: 200 });
   } catch (error) {
     console.log(error);

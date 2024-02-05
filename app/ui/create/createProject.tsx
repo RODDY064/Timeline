@@ -24,7 +24,7 @@ export default function CreateProject({ setOpen ,open }:{ setOpen:any, open:bool
       animate={controls}
       initial='closed'
       id='create'
-      className="md:w-[18rem] w-[95%] md:h-[100%] h-[80%] bg-white rounded-[25px] p-4">
+      className="md:w-[18rem] w-[95%] place-self-center md:place-self-auto md:h-[100%] h-[80%] bg-white rounded-[25px] p-4">
         <div className="flex justify-between">
           <Back action='reset' />
           <Cancel setOpen={setOpen}/>

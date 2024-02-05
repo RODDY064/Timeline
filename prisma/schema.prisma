@@ -35,9 +35,9 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
@@ -45,7 +45,7 @@ model User {
   projects      Project[]
   events        Event[]
   comments      Comment[]
-  collabrote  Collabrotor[]
+  collabrote    Collabrotor[]
 }
 
 model VerificationToken {
@@ -57,34 +57,34 @@ model VerificationToken {
 }
 
 model Project {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  descriptions String?
-  type         String
-  status       Boolean  @default(false)
-  startDate    DateTime
-  endDate      DateTime
-  createdAt    DateTime @default(now()) @map(name: "created_at")
-  updatedAt    DateTime @default(now()) @map(name: "updated_at")
-  creatorId    String   @db.ObjectId
-  event        Event[]
-  tasks        Task[]
-  team         Collabrotor[]
-  user         User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  type        String
+  finished    Boolean       @default(false)
+  startDate   DateTime
+  endDate     DateTime
+  createdAt   DateTime      @default(now()) @map(name: "created_at")
+  updatedAt   DateTime      @default(now()) @map(name: "updated_at")
+  creatorId   String        @db.ObjectId
+  event       Event[]
+  tasks       Task[]
+  team        Collabrotor[]
+  user        User          @relation(fields: [creatorId], references: [id], onDelete: Cascade)
 }
 
 model Event {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  topic        String
-  descriptions String?
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  description  String?
   type         String?
-  status       Boolean  @default(false)
+  finished     Boolean       @default(false)
   startDate    DateTime
   endDate      DateTime
-  createdAt    DateTime @default(now()) @map(name: "created_at")
-  updatedAt    DateTime @default(now()) @map(name: "updated_at")
-  creatorId    String   @db.ObjectId
-  projectId    String?  @db.ObjectId
+  createdAt    DateTime      @default(now()) @map(name: "created_at")
+  updatedAt    DateTime      @default(now()) @map(name: "updated_at")
+  creatorId    String        @db.ObjectId
+  projectId    String?       @db.ObjectId
   tasks        Task[]
   comments     Comment[]
   collabrotors Collabrotor[]
@@ -94,21 +94,19 @@ model Event {
 }
 
 model Task {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   topic     String
-  items     String[]
-  status    Boolean  @default(false)
-  startDate DateTime
-  endDate   DateTime
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  eventId   String   @db.ObjectId
+  content   String?
+  priority  String    @default("low")
+  dueDate   DateTime?
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @default(now()) @map(name: "updated_at")
+  eventId   String    @db.ObjectId
 
   event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   projectId String?  @db.ObjectId
   project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
-
 
 model Comment {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -117,20 +115,19 @@ model Comment {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String   @db.ObjectId
   eventId   String   @db.ObjectId
-  
+
   event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Collabrotor {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
   role      String
-  userId    String   @db.ObjectId
-  projectId String   @db.ObjectId
-  eventId   String  @db.ObjectId
-  
-  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String @db.ObjectId
+  projectId String @db.ObjectId
+  eventId   String @db.ObjectId
+
+  event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
   project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-

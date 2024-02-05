@@ -22,6 +22,9 @@ body {
   bg-dark_cream rounded-[10px] placeholder:text-xs
 }
 
+#render{
+  scroll-behavior:smooth ;
+}
 #render::-webkit-scrollbar{
  display: none;
 }

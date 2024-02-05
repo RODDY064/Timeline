@@ -2,7 +2,24 @@
 import { motion} from 'framer-motion';
 import Image from "next/image";
 
-export default function DashBar() {
+
+
+export default function DashBar( {sliderRef }:{ sliderRef:any}) {
+
+  const handleUpClick = () => {
+    if (sliderRef.current) {
+      const containerHeight = sliderRef.current.clientHeight;
+      sliderRef.current.scrollTop -= containerHeight; // Scroll up by subtracting container height from scrollTop
+    }
+  };
+  
+  const handleDownClick = () => {
+    if (sliderRef.current) {
+      const containerHeight = sliderRef.current.clientHeight;
+      sliderRef.current.scrollTop += containerHeight; // Scroll down by adding container height to scrollTop
+    }
+  };
+  
   return (
     <div className="w-full h-12 max-sm:my-4 mb-2 p-1  flex items-center justify-between border-b border-black/10  text-sm font-light">
       <div className="flex gap-2 ">
@@ -16,7 +33,9 @@ export default function DashBar() {
       <div className="flex gap-2">
         {/* filter by date*/}
         <div className="flex gap-[5px]">
-        <div className="w-[2.7rem] h-[2.6rem] rounded-full border flex items-center justify-center bg-cream_green/50 border-light_green mb-2 cursor-pointer">
+        <div 
+        onClick={handleUpClick}
+        className="w-[2.7rem] h-[2.6rem] rounded-full border flex items-center justify-center bg-cream_green/50 border-light_green mb-2 cursor-pointer ">
             <motion.div
              whileHover={{
                 y:-2,
@@ -25,7 +44,9 @@ export default function DashBar() {
             ><Image src="/icons/right-arrow.svg" width={20} height={20} alt="arrow" className="rotate-[-90deg]"/>
             </motion.div>
           </div>
-          <div className="w-[2.7rem] h-[2.6rem] rounded-full border flex items-center justify-center bg-cream_green/50 border-light_green mb-2 cursor-pointer">
+          <div 
+          onClick={handleDownClick}
+          className="w-[2.7rem] h-[2.6rem] rounded-full border flex items-center justify-center bg-cream_green/50 border-light_green mb-2 cursor-pointer">
             <motion.div
              whileHover={{
                 y:2,
