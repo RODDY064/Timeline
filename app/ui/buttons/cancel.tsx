@@ -16,6 +16,7 @@ export default function Cancel({ setOpen}:{setOpen?:any}) {
       project: false,
       event: false,
       task: false,
+      edited: false,
     })),
 
     setOpen && setOpen(false)

@@ -71,8 +71,8 @@ export default function ProjectCard({ data }: { data: any }) {
             75%
           </div>
           <div className="flex gap-3 items-center px-2">
-            <EditButton word="Delete" type="delete"/>
-            <EditButton word="Edit" type="edit"/>
+            <EditButton id={data.id} word="Delete" type="delete"/>
+            <EditButton id={data.id} word="Edit" type="edit"/>
           </div>
         </div>
       </div>
