@@ -3,6 +3,7 @@ import ColorPallet from "./colorPallet";
 import { formatDateFromISOString } from "@app/utils/functions/formatData";
 import TruncatedText from "./trucatedText";
 import Add from "./add";
+import EditButton from "../edited/editButton";
 
 
 export default function ProjectCard({ data }: { data: any }) {
@@ -70,12 +71,8 @@ export default function ProjectCard({ data }: { data: any }) {
             75%
           </div>
           <div className="flex gap-3 items-center px-2">
-            <h3 className="text-sm text-red-400 font-medium cursor-pointer">
-              Delete
-            </h3>
-            <h3 className="text-sm text-light_green font-medium cursor-pointer">
-              Edit
-            </h3>
+            <EditButton word="Delete" type="delete"/>
+            <EditButton word="Edit" type="edit"/>
           </div>
         </div>
       </div>

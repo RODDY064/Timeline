@@ -1,4 +1,5 @@
 import Create from "@app/ui/create/create"
+import Edit from "@app/ui/edited/edit"
 import Nav from "@app/ui/navbar/nav"
 import Search from "@app/ui/search/search"
 import RightTab from "@app/ui/tabs/right"
@@ -12,6 +13,7 @@ export default function HomeLayout({ children }:{
     <RightTab/>
     <Search/>
     <Create/>
+    <Edit/>
     {children}
    </>
   )

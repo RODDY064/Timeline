@@ -11,6 +11,8 @@ const createContextTheme = createContext<{
     key?:number;
     errorMessages?:String;
     edited?:boolean;
+    type?:boolean;
+  
   };
   setCreate: React.Dispatch<React.SetStateAction<{
     project?: boolean;
@@ -19,6 +21,7 @@ const createContextTheme = createContext<{
     key?:number;
     errorMessages?:String;
     edited?:boolean;
+    type?:boolean;
   }>>;
 } | null>(null);
 
@@ -40,13 +43,15 @@ export default function CreateContextProvider({ children }: { children: React.Re
     key?:number;
     errorMessages?:String;
     edited?:boolean;
+    type?:boolean;
   }>({
     project: false,
     event: false,
     task: false,
     key: 0,
     errorMessages:'',
-    edited:false
+    edited:false,
+    type:false
   });
 
   return (
