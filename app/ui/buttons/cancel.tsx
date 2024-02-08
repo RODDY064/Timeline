@@ -11,10 +11,11 @@ export default function Cancel({ setOpen}:{setOpen?:any}) {
   const { replace } = useRouter();
 
   const handleAction = ()=>{
-    setCreate(() => ({
+    setCreate((prev) => ({
+      ...prev,
       project: false,
       event: false,
-      task: false
+      task: false,
     })),
 
     setOpen && setOpen(false)

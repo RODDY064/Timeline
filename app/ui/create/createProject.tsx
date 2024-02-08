@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Back from '../buttons/back';
 import ChangePage from '../buttons/changePage';
 import FormDataPage from './form';
+import ErrorMessage from './errorMessage';
 
 export default function CreateProject({ setOpen ,open }:{ setOpen:any, open:boolean}) {
     const { create } = useCreateContext()
@@ -27,6 +28,7 @@ export default function CreateProject({ setOpen ,open }:{ setOpen:any, open:bool
       className="md:w-[18rem] w-[95%] place-self-center md:place-self-auto md:h-[100%] h-[80%] bg-white rounded-[25px] p-4">
         <div className="flex justify-between">
           <Back action='reset' />
+           <ErrorMessage/>
           <Cancel setOpen={setOpen}/>
         </div>
         <h1 className="font-[600] text-light_blue my-4">Create a project</h1>

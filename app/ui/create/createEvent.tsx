@@ -21,7 +21,7 @@ export default function CreateEvent({ setOpen ,open }:{ setOpen:any, open:boolea
     if(param.has('id')){
       id = param.get('id')
     }else{
-      console.log('no project id in the url in the create event page')
+     // console.log('no project id in the url in the create event page')
     }
 
     useEffect(()=>{

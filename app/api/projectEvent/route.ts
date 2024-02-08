@@ -42,11 +42,11 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ message: "Project and Event created successfully"},{ status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Internal Server Error", message:"Something went wrong, please try again"},
       { status: 500 }
     );
   }

@@ -32,11 +32,11 @@ export async function POST(request: Request,{ params: {id} }:{ params: {id: stri
     })
     
     
-    return NextResponse.json( { status: 200 });
+    return NextResponse.json( {message: "Event created successfully "},{ status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
+    return NextResponse.json( 
+      { error: "Internal Server Error",message:"Something went wrong, please try again"},
       { status: 500 }
     );
   }

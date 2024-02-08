@@ -1,3 +1,5 @@
+import TruncatedText from "@app/ui/cards/trucatedText";
+
   async function userData (){
     const user = await fetch('https://api/auth',{
       method: 'POST',
@@ -16,7 +18,9 @@ export default async function RoadMap() {
     <div className="w-full flex items-center justify-center cursor-pointer">
       user
     </div>
-    <div></div>
+    <div>
+      <TruncatedText text="This is a long text that needs to be truncated" />
+    </div>
   </main>
   )
 }

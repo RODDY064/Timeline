@@ -31,12 +31,13 @@ export async function POST(request: Request) {
          
     const projectId = project.id
     
-    return  NextResponse.json( { projectId },{ status: 200 });
+    return  NextResponse.json( { projectId , message:"Project created successfully" },{ status: 200 });
 
   } catch (error) {
     console.log(error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+
+      { error: "Internal Server Error",message:"Something went wrong, please try again"},
       { status: 500 }
     );
   }
