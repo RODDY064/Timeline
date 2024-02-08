@@ -32,6 +32,9 @@ export default function EditButton({
   
       }
 
+      params.set('id', id);
+      replace(`?${params.toString()}`);
+
     }
 
 
