@@ -26,7 +26,8 @@ export  default async function dashboard({
   const resource =  await getAllData(query);
 
   return (
-    <main className="md:pl-[8rem] px-2 pt-4 md:pt-[5.7rem]  md:overflow-hidden h-screen md:pr-[18rem] ">
+    <main className="md:pl-[8rem] h-screen md:overflow-hidden px-2 pt-4 md:pt-[5.7rem] md:pr-[18rem] ">
+
       <div className="w-full flex ">
         <h4 className="text-xs text-dark_black/30 font-medium">DASHBOARD</h4>
         <Image
