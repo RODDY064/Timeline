@@ -51,10 +51,11 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get("query");
+    const limit = searchParams.get("limit");
 
     let data;
 
-    if (query) {
+    if (query && limit === "all") {
       // Search for projects or events based on the query
       data = await prisma.project.findMany({
         where: {
