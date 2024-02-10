@@ -2,9 +2,15 @@ import prisma from "@app/utils/prisma";
 import { NextResponse } from "next/server";
 
 
-export async function POST(request: Request,{ params: {id} }:{ params: {id: string}}) {
+export async function POST(request: Request ) {
   try {
-    const userId = "65bd072bf14310b0ea297619";
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get("userId");
+    const projectId = searchParams.get("projectId");
+
+    console.log(userId,projectId);
+    return NextResponse.json({ userId, projectId },{ status: 200 });
+
     const { name, description, startDate, endDate, type } = await request.json();
 
     const startDateISO = new Date(startDate).toISOString();
@@ -20,12 +26,12 @@ export async function POST(request: Request,{ params: {id} }:{ params: {id: stri
         type:type,
         user: {
           connect : {
-            id: userId
+            id: userId!
           }
         },
         project : {
           connect:{
-            id:id
+            id:projectId!
           }
         }
       }

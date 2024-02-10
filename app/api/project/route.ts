@@ -1,15 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-
+export const revalidate = 60
 
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
   try {
-    const userId = "65bd072bf14310b0ea297619";
 
-    const { name, description, startDate, endDate, type } = await request.json();
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get("userId");
+
+     return NextResponse.json({ userId },{ status: 200 });
+
+   const { name, description, startDate, endDate, type } = await request.json();
    
      const startDateISO = new Date(startDate).toISOString();
      const endDateISO = new Date(endDate).toISOString();   
@@ -23,15 +27,16 @@ export async function POST(request: Request) {
           type: type,
           user: {
             connect: {
-              id: userId,
+              id: userId!,
             },
           },
         },
+        
       });
-         
-    const projectId = project.id
-    
-    return  NextResponse.json( { projectId , message:"Project created successfully" },{ status: 200 });
+
+      const projectId = project.id;
+ 
+    return  NextResponse.json( { projectId ,message:"Project created successfully" },{ status: 200 });
 
   } catch (error) {
     console.log(error);
@@ -47,7 +52,10 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   try {
 
-    const data = await prisma.project.findMany({
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query");
+
+   const data = await prisma.project.findMany({
       where: {
         finished: false
       },
@@ -66,6 +74,7 @@ export async function GET(request: Request) {
       }
     });
     
+
     return  NextResponse.json( { data },{ status: 200})
   } catch (error) {
     console.log(error);
