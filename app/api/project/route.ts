@@ -11,8 +11,6 @@ export async function POST(request: Request) {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get("userId");
 
-     return NextResponse.json({ userId },{ status: 200 });
-
    const { name, description, startDate, endDate, type } = await request.json();
    
      const startDateISO = new Date(startDate).toISOString();

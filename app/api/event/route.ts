@@ -8,8 +8,6 @@ export async function POST(request: Request ) {
     const userId = searchParams.get("userId");
     const projectId = searchParams.get("projectId");
 
-    console.log(userId,projectId);
-    return NextResponse.json({ userId, projectId },{ status: 200 });
 
     const { name, description, startDate, endDate, type } = await request.json();
 
@@ -37,8 +35,9 @@ export async function POST(request: Request ) {
       }
     })
     
+    const eventId = event.id;
     
-    return NextResponse.json( {message: "Event created successfully "},{ status: 200 });
+    return NextResponse.json({ eventId ,message: "Event created successfully "},{ status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json( 
