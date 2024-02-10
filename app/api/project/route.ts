@@ -49,37 +49,82 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-
     const { searchParams } = new URL(request.url);
     const query = searchParams.get("query");
 
-   const data = await prisma.project.findMany({
-      where: {
-        finished: false
-      },
-      include: {
-        event: {
-          select: {
-            id:true,
-            name: true,
-            tasks: {
-              select:{
-                id: true,
+    let data;
+
+    if (query) {
+      // Search for projects or events based on the query
+      data = await prisma.project.findMany({
+        where: {
+          AND: [
+            {
+              finished: false // Ensure finished is false
+            },
+            {
+              OR: [
+                {
+                  name: {
+                    contains: query // Search project names
+                  }
+                },
+                {
+                  event: {
+                    some: {
+                      name: {
+                        contains: query // Search event names
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        include: {
+          event: {
+            select: {
+              id: true,
+              name: true,
+              tasks: {
+                select: {
+                  id: true,
+                }
               }
             }
           }
         }
-      }
-    });
+      });
+    } else {
+      // Fetch all projects with their events where finished is false
+      data = await prisma.project.findMany({
+        where: {
+          finished: false
+        },
+        include: {
+          event: {
+            select: {
+              id: true,
+              name: true,
+              tasks: {
+                select: {
+                  id: true,
+                }
+              }
+            }
+          }
+        }
+      });
+    }
     
 
-    return  NextResponse.json( { data },{ status: 200})
+    return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
     );
-    
   }
 }
