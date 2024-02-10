@@ -13,10 +13,8 @@ export default function Search() {
   const handleSearch = useDebouncedCallback((term:string)=>{
     const param = new URLSearchParams(searchParams)
     if(term){
-      param.set('limit',"all")
       param.set('query',term)
     }else{
-      param.delete('limit')
       param.delete('query')
     }
     replace(`${pathname}?${param.toString()}`);
@@ -43,8 +41,9 @@ export default function Search() {
         {/* Input Div*/}
         <div className="md:w-[75%] w-full bg-white md:bg-dark_cream flex items-center gap-2 md:rounded-[5px] overflow-hidden relative rounded-lg ">
           <input
+            id="searchInput"
             type="text"
-            placeholder="Search for everything..."
+            placeholder="Search for projects or events..."
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={searchParams.get('query')?.toString()}
             className="w-full h-full bg-transparent outline-none text-sm  px-8 pr-10 py-[0.62rem]  max-sm:rounded-lg "

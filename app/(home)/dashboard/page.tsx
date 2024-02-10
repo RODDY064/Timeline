@@ -4,8 +4,8 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 
- async function getAllData () {
-  const res = await fetch(`${process.env.URL}/api/project`,{
+ async function getAllData (search:string) {
+  const res = await fetch(`${process.env.URL}/api/project?query=${search}&limit=all`,{
     method: 'GET',
     cache: 'no-cache',
   })
@@ -14,12 +14,19 @@ import { Suspense } from "react";
 
  }
 
-export  default async function dashboard() {
+export  default async function dashboard({
+  searchParams,
+}:{
+  searchParams?: {
+    query?: string;
+  };
+}) {
 
-  const resource =  await getAllData();
+  const query = searchParams?.query || '';
+  const resource =  await getAllData(query);
 
   return (
-    <main className="md:pl-[8rem] px-2 pt-4 md:pt-[5.7rem] md:pr-[18rem] ">
+    <main className="md:pl-[8rem] px-2 pt-4 md:pt-[5.7rem]  md:overflow-hidden h-screen md:pr-[18rem] ">
       <div className="w-full flex ">
         <h4 className="text-xs text-dark_black/30 font-medium">DASHBOARD</h4>
         <Image
@@ -48,7 +55,7 @@ export  default async function dashboard() {
         </div>
       </div>
        <Suspense fallback={<div>Loading...</div>}>
-        <Render resource={resource}/>
+        {<Render resource={resource}/> }
        </Suspense>
     </main>
   );

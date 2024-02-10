@@ -18,6 +18,8 @@ export default function FormDataPage({
   id?: string | null;
 }) {
   const { create, setCreate } = useCreateContext();
+  
+  const userId = "65bd072bf14310b0ea297619";
   // data input state management
   const {
     projectData,
@@ -81,10 +83,10 @@ export default function FormDataPage({
       // check  for individual data is filled and valid
       switch (type) {
         case "project":
-          (formData = projectData), (endPoint = type);
+          (formData = projectData), (endPoint = `${type}?userId=${userId}`);
           break;
         case "event":
-          (formData = eventData), (endPoint = `${type}/${id}`);
+          (formData = eventData), (endPoint = `${type}?userId=${userId}&projectId=${id}`);
           break;
         case "task":
           (formData = taskData), (endPoint = type);
